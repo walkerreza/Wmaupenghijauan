@@ -6,20 +6,12 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      email:
-        description: 'Email commit'
-        required: true
-        default: 'rezawalker02@gmail.com'
-      username:
-        description: 'komit auto'
-        required: true
-        default: 'walkerreza'
       message:
-        description: 'Pesan autp'
+        description: 'Pesan commit'
         required: true
-        default: 'Auto commit'
+        default: 'Penghijauan'
       limit:
-        description: 'Jumlah auto commit'
+        description: 'Jumlah commit'
         required: true
         default: 5
 
@@ -28,20 +20,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Git
         run: |
-          git config --local user.email "${{ github.event.inputs.email }}"
-          git config --local user.name "${{ github.event.inputs.username }}"
+          git config --local user.email "rezawalker02@gmail.com"
+          git config --local user.name "walkerreza"
 
       - name: Auto Commit
         run: |
           for i in $(seq 1 ${{ github.event.inputs.limit }})
           do
-            echo "$(date -u)" > LAST_UPDATED
+            echo "Auto update $i - $(date -u)" > LAST_UPDATED
             git add LAST_UPDATED
             git commit -m "${{ github.event.inputs.message }} #$i"
           done
