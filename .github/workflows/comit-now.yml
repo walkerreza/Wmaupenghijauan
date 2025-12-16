@@ -1,5 +1,8 @@
 name: Commit Now (Manual)
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
     inputs:
