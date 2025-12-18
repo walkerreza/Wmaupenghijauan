@@ -24,8 +24,8 @@ jobs:
       - name: Generate random commit count
         id: random
         run: |
-          MIN=10
-          MAX=14
+          MIN=9
+          MAX=15
           COUNT=$((RANDOM % (MAX - MIN + 1) + MIN))
           echo "count=$COUNT" >> $GITHUB_OUTPUT
           echo "Today will commit $COUNT times"
